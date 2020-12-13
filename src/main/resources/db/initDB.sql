@@ -3,5 +3,6 @@ DROP TABLE files IF EXISTS;
 CREATE TABLE files
 (
     id      INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    file    BLOB(8M) NOT NULL
+    name    VARCHAR(255)    NOT NULL,
+    file    BLOB(8M)
 )
