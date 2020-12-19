@@ -2,11 +2,14 @@ package bigtask01.controller;
 
 import bigtask01.model.FileInfo;
 import bigtask01.service.FilesService;
+import bigtask01.util.exceptions.IllegalRequestDataException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
+import javax.validation.constraints.NotNull;
+import org.apache.commons.fileupload.FileUploadBase.SizeLimitExceededException;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.http.HttpStatus;
@@ -51,7 +54,11 @@ public class FilesController {
   }
 
   @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-  public ResponseEntity<FileInfo> create(@RequestParam("attach") MultipartFile file) {
+  public ResponseEntity<FileInfo> upload(@RequestParam("attach") MultipartFile file) {
+    if (file.isEmpty()) {
+      return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);
+    }
+
     try {
       return new ResponseEntity<>(
           service.create(new FileInfo(file.getOriginalFilename(), file.getBytes())),

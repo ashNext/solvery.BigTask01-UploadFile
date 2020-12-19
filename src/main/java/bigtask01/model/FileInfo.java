@@ -26,8 +26,8 @@ public class FileInfo {
   private String name;
 
   @Lob
-//  @NotNull
-  @Column(name = "file", length = 8 * 1024 * 1024)
+  @NotNull
+  @Column(name = "file", length = 1024)
 //  @JsonIgnore
   private byte[] bytes;
 

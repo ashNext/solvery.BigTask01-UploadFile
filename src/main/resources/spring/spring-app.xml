@@ -52,7 +52,7 @@
     p:entityManagerFactory-ref="entityManagerFactory"/>
 
   <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-    <property name="maxUploadSize" value="8388608"/>
+    <property name="maxUploadSize" value="1024"/>
   </bean>
 
 </beans>

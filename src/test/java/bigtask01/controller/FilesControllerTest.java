@@ -89,7 +89,7 @@ class FilesControllerTest {
   }
 
   @Test
-  void create() throws Exception {
+  void upload() throws Exception {
     MockMultipartFile file =
         new MockMultipartFile("attach", "test.txt", "text/plain",
             "text".getBytes());
@@ -102,6 +102,17 @@ class FilesControllerTest {
     FileInfo created = service.get(2);
     assertEquals("test.txt", created.getName());
     assertEquals(Arrays.toString("text".getBytes()), Arrays.toString(created.getBytes()));
+  }
+
+  @Test
+  void uploadEmpty() throws Exception {
+    MockMultipartFile file =
+        new MockMultipartFile("attach", "", "text/plain",
+            "".getBytes());
+
+    mockMvc.perform(multipart(REST_URL).file(file))
+        .andDo(print())
+        .andExpect(status().isUnprocessableEntity());
   }
 
   @Test
