@@ -1,6 +1,5 @@
 package bigtask01.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.Arrays;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -29,7 +28,7 @@ public class FileInfo {
   @Lob
 //  @NotNull
   @Column(name = "file", length = 8 * 1024 * 1024)
-  @JsonIgnore
+//  @JsonIgnore
   private byte[] bytes;
 
   public FileInfo() {

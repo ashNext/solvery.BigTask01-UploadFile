@@ -26,7 +26,7 @@ import org.springframework.web.multipart.MultipartFile;
 @RequestMapping(value = FilesController.REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
 public class FilesController {
 
-  static final String REST_URL = "rest/files";
+  static final String REST_URL = "/rest/files";
 
   private final FilesService service;
 
